@@ -1,6 +1,8 @@
 import tw from "tailwind-styled-components";
 import Navbar from "./components/Navbar";
-import ProductCard from "./components/ProductCard";
+import Pagination from "./components/Pagination";
+import ProductContainer from "./components/ProductsContainer";
+
 const Container = tw.div`
     flex
     items-center
@@ -20,7 +22,7 @@ function App() {
   return (
     <Container style={{ minHeight: "100vh" }}>
       <Navbar />
-      <div className="font-bold text-3xl w-full flex flex-col items-center flex-grow py-16 bg-bg-gray">
+      <div className="font-bold text-3xl w-full flex flex-row items-center flex-grow py-16 bg-bg-gray">
         <div className="w-3/12"></div>
         <div className="flex flex-col w-6/12">
           <div className="font-normal text-text-gray">Products</div>
@@ -29,16 +31,8 @@ function App() {
               ABC
             </div>
           </div>
-          <div className="w-full bg-bg-white mt-5 grid grid-cols-4 gap-7 p-4">
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-          </div>
+          <ProductContainer />
+          <Pagination itemsTotal={60} itemsPerPage={6} />
         </div>
         <div className="w-3/12"></div>
       </div>

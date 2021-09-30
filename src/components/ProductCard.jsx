@@ -3,9 +3,9 @@ import tw from "tailwind-styled-components";
 const Card = tw.div`
     flex
     flex-col
+    justify-between
     h-96
     text-xl
-    font-semibold
     w-full
 `;
 const ImageContainer = tw.div`
@@ -16,7 +16,7 @@ const ImageContainer = tw.div`
     h-60
     border-border-gray
     border
-    rounded-lg
+    rounded-xl
 `;
 const Image = tw.div`
     bg-bg-gray
@@ -35,24 +35,29 @@ const Title = tw.div`
     flex-row
     text-text-black
     mt-1
+    font-medium
 `;
 const Button = tw.div`
     text-center
     text-primary-white
-    rounded-md
+    rounded-sm
+    font-normal
     bg-primary-blue
     mt-2
     py-1
     px-3
 `;
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
+  console.log(product);
   return (
     <Card>
-      <ImageContainer>
-        <Image />
-      </ImageContainer>
-      <Price>tl 48874</Price>
-      <Title>Deneme</Title>
+      <div className="flex flex-col">
+        <ImageContainer>
+          <Image />
+        </ImageContainer>
+        <Price>&#x20BA; {product.price}</Price>
+        <Title>{product.name}</Title>
+      </div>
       <Button>Add</Button>
     </Card>
   );

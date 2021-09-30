@@ -22,6 +22,9 @@ module.exports = {
           gray: "#E5E5E5",
         },
       },
+      borderRadius: {
+        xl: "1.3rem",
+      },
     },
   },
   variants: {
