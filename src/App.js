@@ -1,9 +1,24 @@
+import tw from "tailwind-styled-components";
+import Navbar from "./components/Navbar";
+const Container = tw.div`
+    flex
+    items-center
+    flex-col
+    w-full
+`;
+const Footer = tw.div`
+  h-8
+  w-full
+  text-primary-blue
+  flex
+  flex-row
+  items-center
+  justify-center
+`;
 function App() {
   return (
-    <div className="flex flex-col items-center" style={{ minHeight: "100vh" }}>
-      <div className="h-16 sticky top-0 left-0 w-full bg-primary-blue text-primary-white">
-        Navbar
-      </div>
+    <Container style={{ minHeight: "100vh" }}>
+      <Navbar />
       <div className="font-bold text-3xl w-full flex flex-col items-center flex-grow py-16 bg-bg-gray">
         <div className="w-3/12"></div>
         <div className="flex flex-col w-6/12">
@@ -17,10 +32,8 @@ function App() {
         </div>
         <div className="w-3/12"></div>
       </div>
-      <div className="h-8 w-full text-primary-blue flex flex-row items-center justify-center">
-        &#169;2019 Market . Privacy Policy
-      </div>
-    </div>
+      <Footer>&#169;2019 Market . Privacy Policy</Footer>
+    </Container>
   );
 }
 
