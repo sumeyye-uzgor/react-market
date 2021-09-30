@@ -18,6 +18,9 @@ module.exports = {
           gray: "#6F6F6F",
           black: "#191919",
         },
+        border: {
+          gray: "#E5E5E5",
+        },
       },
     },
   },

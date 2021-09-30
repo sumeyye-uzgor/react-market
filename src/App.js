@@ -1,5 +1,6 @@
 import tw from "tailwind-styled-components";
 import Navbar from "./components/Navbar";
+import ProductCard from "./components/ProductCard";
 const Container = tw.div`
     flex
     items-center
@@ -28,7 +29,16 @@ function App() {
               ABC
             </div>
           </div>
-          <div className="w-full bg-bg-white mt-5">DEnem</div>
+          <div className="w-full bg-bg-white mt-5 grid grid-cols-4 gap-7 p-4">
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </div>
         </div>
         <div className="w-3/12"></div>
       </div>
