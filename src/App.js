@@ -1,6 +1,9 @@
 import tw from "tailwind-styled-components";
 import Navbar from "./components/Navbar";
 import PageContainer from "./components/PageContainer";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchDataStartAsync } from "./redux/actions";
 
 const Container = tw.div`
     flex
@@ -18,6 +21,10 @@ const Footer = tw.div`
   justify-center
 `;
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchDataStartAsync());
+  }, []);
   return (
     <Container style={{ minHeight: "100vh" }}>
       <Navbar />

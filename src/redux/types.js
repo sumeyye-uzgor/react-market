@@ -1,3 +1,6 @@
-export const userActionTypes = {
-  SET_CURRENT_USER: "SET_CURRENT_USER",
+export const types = {
+  FETCH_DATA_START: "FETCH_DATA",
+  FETCH_DATA_FAILURE: "FETCH_DATA_FAILURE",
+  FETCH_DATA_SUCCESS: "FETCH_DATA_SUCCESS",
 };
+export default types;
