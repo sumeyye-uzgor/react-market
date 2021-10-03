@@ -4,8 +4,9 @@ import axios from "axios";
 export const fetchDataStart = () => ({
   type: types.FETCH_DATA_START,
 });
-export const fetchDataFailure = () => ({
+export const fetchDataFailure = (error) => ({
   type: types.FETCH_DATA_FAILURE,
+  payload: error,
 });
 export const fetchDataSuccess = ({ products, companies }) => ({
   type: types.FETCH_DATA_SUCCESS,
@@ -20,11 +21,11 @@ export const fetchDataStartAsync = () => {
         `http://localhost:3001/products`
       );
       const { data: companies } = await axios.get(
-        "http://localhost:3001/companies"
+        "http://localhost:3000/companies"
       );
       dispatch(fetchDataSuccess({ companies, products }));
     } catch (error) {
-      dispatch(fetchDataFailure());
+      dispatch(fetchDataFailure(error.message));
     }
   };
 };

@@ -4,6 +4,8 @@ import PageContainer from "./components/PageContainer";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchDataStartAsync } from "./redux/actions";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Container = tw.div`
     flex
@@ -28,6 +30,7 @@ function App() {
   return (
     <Container style={{ minHeight: "100vh" }}>
       <Navbar />
+      <ToastContainer />
       <PageContainer />
       <Footer>&#169;2019 Market . Privacy Policy</Footer>
     </Container>
