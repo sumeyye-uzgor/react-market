@@ -21,7 +21,7 @@ export const fetchDataStartAsync = () => {
         `http://localhost:3001/products`
       );
       const { data: companies } = await axios.get(
-        "http://localhost:3000/companies"
+        "http://localhost:3001/companies"
       );
       dispatch(fetchDataSuccess({ companies, products }));
     } catch (error) {
