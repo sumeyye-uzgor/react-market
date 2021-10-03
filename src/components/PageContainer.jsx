@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 import tw from "tailwind-styled-components";
+import { selectTotalProducts } from "../redux/selectors";
 import Pagination from "./Pagination";
 import ProductsContainer from "./ProductsContainer";
 
@@ -7,6 +9,7 @@ const Container = tw.div`
 `;
 
 function PageContainer() {
+  const totalProducts = useSelector(selectTotalProducts);
   return (
     <Container>
       <div className="w-3/12"></div>
@@ -18,7 +21,7 @@ function PageContainer() {
           </div>
         </div>
         <ProductsContainer />
-        <Pagination itemsTotal={60} itemsPerPage={6} />
+        <Pagination itemsTotal={totalProducts} itemsPerPage={16} />
       </div>
       <div className="w-3/12"></div>
     </Container>

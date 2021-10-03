@@ -6,6 +6,8 @@ const INITIAL_STATE = {
   companies: [],
   isLoading: false,
   cart: [],
+  currentPage: 1,
+  totalProducts: 1,
 };
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -17,9 +19,13 @@ const reducer = (state = INITIAL_STATE, action) => {
     case types.FETCH_DATA_SUCCESS:
       return {
         ...state,
-        products: action.payload.products,
-        companies: action.payload.companies,
+        ...action.payload,
         isLoading: false,
+      };
+    case types.SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
       };
     default:
       return state;
