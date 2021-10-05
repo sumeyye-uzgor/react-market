@@ -8,6 +8,8 @@ const INITIAL_STATE = {
   cart: [],
   currentPage: 1,
   totalProducts: 1,
+  filteredProducts: [],
+  tags: [],
 };
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -26,6 +28,17 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentPage: action.payload,
+      };
+    case types.SET_FILTERED_PRODUCTS:
+      return {
+        ...state,
+        filteredProducts: action.payload,
+        totalProducts: action.payload.length,
+        tags: action.payload
+          .reduce((product, tagArray) => {
+            return [...tagArray, ...product.tags];
+          }, [])
+          .filter((v, i, a) => a.indexOf(v) === i),
       };
     default:
       return state;

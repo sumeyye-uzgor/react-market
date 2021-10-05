@@ -60,7 +60,6 @@ const Pagination = ({ itemsTotal, itemsPerPage }) => {
     }
   }, [currentPage, halfTotal, totalPages]);
 
-  console.log(pageArray);
   return (
     <div className="w-full mt-5 flex flex-row text-base font-medium justify-around">
       <div

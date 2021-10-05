@@ -14,7 +14,17 @@ export const fetchDataFailure = (error) => ({
 });
 export const fetchDataSuccess = ({ products, companies, totalProducts }) => ({
   type: types.FETCH_DATA_SUCCESS,
-  payload: { products, companies, totalProducts },
+  payload: {
+    products,
+    companies,
+    totalProducts,
+    tags: products
+      .reduce((tagArray, product) => {
+        return [...tagArray, ...product.tags];
+      }, [])
+      .filter((v, i, a) => a.indexOf(v) === i),
+    filteredProducts: products,
+  },
 });
 export const fetchDataStartAsync = () => {
   return async (dispatch) => {
@@ -22,10 +32,10 @@ export const fetchDataStartAsync = () => {
     try {
       //change this to env process
       const { data: products } = await axios.get(
-        `http://localhost:3001/products`
+        `http://localhost:3004/products`
       );
       const { data: companies } = await axios.get(
-        "http://localhost:3001/companies"
+        "http://localhost:3004/companies"
       );
       dispatch(
         fetchDataSuccess({
