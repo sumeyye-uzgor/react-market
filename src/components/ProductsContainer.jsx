@@ -6,7 +6,6 @@ import {
   selectCurrentPage,
 } from "../redux/selectors";
 
-// import axios from "axios";
 const ProductsContainer = () => {
   const currentPage = useSelector(selectCurrentPage);
   const skeletonArray = Array(16).fill("");
