@@ -5,7 +5,7 @@ import { setItemType } from "../../redux/actions";
 const TypeButton = tw.div`
     px-3 py-1 font-light text-lg rounded-sm cursor-pointer
     ${(props) =>
-      props.isActive
+      props.isactive === "true"
         ? "bg-primary-blue text-primary-white"
         : "bg-primary-white text-primary-blue"}
 `;
@@ -16,7 +16,7 @@ const ProductTypes = () => {
     <>
       {types.map((type, idx) => (
         <TypeButton
-          isActive={type.isActive}
+          isactive={type.isActive.toString()}
           key={idx}
           onClick={() => dispatch(setItemType(type))}
         >
