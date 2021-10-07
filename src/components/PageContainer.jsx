@@ -7,7 +7,7 @@ import FiltersContainer from "./FiltersContainer";
 import ProductTypes from "./Filters/ProductTypes";
 
 const Container = tw.div`
-    font-bold text-3xl w-full flex flex-row items-center flex-grow py-16 bg-bg-gray
+    font-bold text-3xl w-full flex flex-row flex-grow py-16 bg-bg-gray
 `;
 
 function PageContainer() {
@@ -25,7 +25,14 @@ function PageContainer() {
         <ProductsContainer />
         <Pagination itemsTotal={totalProducts} itemsPerPage={16} />
       </div>
-      <div className="w-3/12"></div>
+      <div className="w-3/12 pl-10">
+        <div className="border-8 border-primary-blue w-96 h-96 justify-between flex flex-col p-7">
+          <div className=" overflow-y-scroll flex flex-col">CarITems</div>
+          <div className="border-4 border-primary-blue w-max h-max py-2 px-4 self-end">
+            Cart Total
+          </div>
+        </div>
+      </div>
     </Container>
   );
 }
