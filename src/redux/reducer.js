@@ -1,5 +1,4 @@
 import { toast } from "react-toastify";
-import { sortProducts } from "./actions";
 import { types } from "./types";
 
 const INITIAL_STATE = {
@@ -31,23 +30,35 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         currentPage: action.payload,
       };
-    case types.SET_FILTERED_PRODUCTS:
+    case types.SET_FILTERS:
+      let { tagsArray, companiesArray } = action.payload;
+      tagsArray =
+        tagsArray && tagsArray.length > 0
+          ? tagsArray.filter((tag) => tag !== "All")
+          : state.tags;
+      companiesArray =
+        companiesArray && companiesArray.length > 0
+          ? companiesArray.filter((company) => company !== "all")
+          : state.companies.map((company) => company.slug);
+
+      const tagFilteredProducts = state.products.filter((product) =>
+        tagsArray.find((tag) => product.tags.includes(tag))
+      );
+      const companiesFilteredProducts = tagFilteredProducts.filter((product) =>
+        companiesArray.includes(product.manufacturer)
+      );
       return {
         ...state,
-        filteredProducts: action.payload,
-        totalProducts: action.payload.length,
-        tags: action.payload
-          .reduce((tagArray, product) => {
-            return [...tagArray, ...product.tags];
-          }, [])
-          .filter((v, i, a) => a.indexOf(v) === i),
-        types: action.payload
+        filteredProducts: companiesFilteredProducts,
+        totalProducts: companiesFilteredProducts.length,
+        types: companiesFilteredProducts
           .reduce((typeArray, product) => {
             return [...typeArray, product.itemType];
           }, [])
           .filter((v, i, a) => a.indexOf(v) === i)
           .map((type) => ({ label: type, isActive: true })),
       };
+
     case types.SET_ITEM_TYPE:
       const updatedTypes = state.types.map((type) =>
         type.label === action.payload.label

@@ -13,6 +13,14 @@ export const sortProducts = (sortType) => ({
   type: types.SORT_PRODUCTS,
   payload: sortType,
 });
+export const setFilterArray = ({ label, array }) => ({
+  type: types.SET_FILTER_ARRAY,
+  payload: { label, array },
+});
+export const setFilters = ({ companiesArray, tagsArray, typesArray }) => ({
+  type: types.SET_FILTERS,
+  payload: { companiesArray, tagsArray, typesArray },
+});
 export const fetchDataStart = () => ({
   type: types.FETCH_DATA_START,
 });

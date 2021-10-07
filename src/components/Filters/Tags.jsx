@@ -2,12 +2,14 @@ import CheckboxInput from "../FormElements/CheckboxInput";
 import { useEffect, useState } from "react";
 import { selectTags } from "../../redux/selectors";
 import { useSelector } from "react-redux";
+import { setFilters } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
-const Tags = () => {
+const Tags = ({ tagsArray, setTagsArray, companiesArray }) => {
   const tags = useSelector(selectTags);
+  const dispatch = useDispatch();
   const [tagInput, setTagInput] = useState("");
   const [filteredTags, setFilteredTags] = useState(["All", ...tags]);
-  const [tagArray, setTagArray] = useState([]);
   useEffect(() => {
     setFilteredTags([
       "All",
@@ -18,10 +20,14 @@ const Tags = () => {
   }, [tagInput, setFilteredTags, tags]);
 
   useEffect(() => {
-    filteredTags.length !== tagArray.length &&
-      setTagArray(tagArray.filter((brand) => brand !== "All"));
-  }, [tags, filteredTags]);
-
+    filteredTags.length !== tagsArray.length &&
+      setTagsArray((tagsArray) => tagsArray.filter((brand) => brand !== "All"));
+  }, [tags, filteredTags, setTagsArray]);
+  useEffect(() => {
+    dispatch(
+      setFilters({ companiesArray: companiesArray, tagsArray: tagsArray })
+    );
+  }, [tagsArray, companiesArray, dispatch]);
   return (
     <div className="w-full bg-bg-white mt-5 flex flex-col px-4 pb-4 h-80 rounded-sm">
       <div className="sticky top-0 left-0 w-full bg-bg-white z-10 py-4">
@@ -37,8 +43,8 @@ const Tags = () => {
             key={tag}
             label={tag}
             id={tag}
-            labelArray={tagArray}
-            setLabelArray={setTagArray}
+            labelArray={tagsArray}
+            setLabelArray={setTagsArray}
             filteredLabels={filteredTags}
             isTags={true}
           />

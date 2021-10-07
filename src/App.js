@@ -26,7 +26,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDataStartAsync());
-  }, []);
+  }, [dispatch]);
   return (
     <Container style={{ minHeight: "100vh" }}>
       <Navbar />
